@@ -25,7 +25,25 @@ export default {
 
     return Math.round((Math.random() * (max - min)) + min);
   },
+  buildLocation: (loc = {}) => {
+    const location = Object.assign({}, loc);
+    location.protocol = location.protocol || 'http';
+    location.ptc = location.ptc || 'config.json';
 
+    if (location.hostname) {
+      location.config = `${location.protocol}://${location.hostname}`;
+      if (location.port) {
+        location.config += `:${location.port}`;
+      }
+      location.config += '/';
+      if (location.prefix) {
+        location.config += `${location.prefix}/`;
+      }
+      location.config += `${location.ptc}`;
+    }
+
+    return location;
+  },
   contentLoaded: (win, fn) => {
     let done = false;
     let top = true;

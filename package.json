@@ -18,7 +18,7 @@
     "build": "babel src --out-dir lib",
     "start": "babel src --watch --out-dir lib",
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "mocha --reporter spec --bail --check-leaks --compilers js:babel-core/register test/",
     "prepublish": "npm run clean && npm run build",
     "precommit": "npm run lint && npm test",
     "prepush": "npm run lint && npm test"
@@ -28,12 +28,14 @@
     "babel-core": "6.24.0",
     "babel-eslint": "7.2.1",
     "babel-preset-es2015": "6.24.0",
+    "chai": "3.5.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "husky": "0.13.3",
+    "mocha": "3.4.1",
     "rimraf": "2.6.1"
   }
 }
